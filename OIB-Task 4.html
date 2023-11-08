@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login authentication</title>
+        <link rel="stylesheet" href="OIB-Task 4.css">
+    </head>
+    <body style="font-style: italic;font-size: 12px;">
+        
+        <div class="main">
+            <div class="m_register">
+            <form id="register-form">
+                <h1>&nbsp;Registration Form</h1>
+                <input type="text" placeholder="firstname" id="register-first"><br><br>
+                
+                <input type="text" placeholder="lastname" id="register-last"><br><br>
+                
+                <input type="email" placeholder="email id" id="register-email"><br><br>
+                
+                <input type="password" placeholder="password" id="register-psw"><br><br>
+                <button type="submit">Register</button>
+            </form>
+            </div>
+            <div class="m_login">
+            <form id="login-form">
+                <h1>&nbsp;Login Form</h1><br>
+                
+                <br>
+                <input type="email" placeholder="emailid" id="login-email"><br><br>
+                <br>
+                <input type="password" placeholder="password" id="login-psw"><br><br><br>
+                <button type="submit">Login</button>
+               
+            </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+
+            
+           const loginform=document.getElementById('login-form');
+           const registerform=document.getElementById('register-form');
+           const users=[];
+           loginform.addEventListener('submit',event => {
+            event.preventDefault();
+            const username=document.getElementById('login-email').value;
+            const password=document.getElementById('login-psw').value;
+            const user=users.find(user=>user.username===username);
+            if(user&&user.password===password){
+                alert("login successfull");
+            }
+            else{
+                alert("login unsuccessfull");
+            }
+           });
+           registerform.addEventListener('submit',event=>{
+            event.preventDefault();
+            const firstname=document.getElementById('register-first').value;
+            const lastname=document.getElementById('register-last').value;
+            const username=document.getElementById('register-email').value;
+            const password=document.getElementById('register-psw').value;
+            const existinguser=users.find(user=>user.username===username);
+            if(username===''||password===''||firstname===''||lastname===''){
+                alert("enter your details")
+            }
+            if(existinguser)
+            {
+                alert("Already exist");
+            }
+            if(username!=''||password!=''||firstname!=''||lastname!='')
+            {
+                users.push({username,password});
+                alert(" Registration successfull");
+            }
+           });
+        });
+            
+        </script>
+    </body>
+</html> 
